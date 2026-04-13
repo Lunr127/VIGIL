@@ -2,52 +2,46 @@
 
 # VIGIL: Part-Grounded Structured Reasoning for Generalizable Deepfake Detection
 
-[Paper (PDF)]() &nbsp;|&nbsp; [Project Page]() &nbsp;|&nbsp; [OmniFake Dataset]() &nbsp;|&nbsp; [Model Weights]()
+[Paper](https://arxiv.org/abs/2603.21526) &nbsp;|&nbsp; [Project Page](https://vigil.best/) &nbsp;|&nbsp; [OmniFake Dataset]() &nbsp;|&nbsp; [Model Weights]()
 
 </div>
 
-## Abstract
+## Overview
 
-Multimodal large language models (MLLMs) offer a promising path toward interpretable deepfake detection by generating textual explanations. However, the reasoning process of current MLLM-based methods combines evidence generation and manipulation localization into a unified step. This combination blurs the boundary between faithful observations and hallucinated explanations, leading to unreliable conclusions.
+**VIGIL** is a part-centric structured forensic framework for interpretable and generalizable deepfake detection. Current MLLM-based detectors combine evidence generation and manipulation localization in a single step, blurring faithful observations and hallucinated explanations. VIGIL decouples them through a **plan-then-examine** pipeline: the model first plans which facial parts to inspect based on global visual cues, then examines each part with independently sourced forensic evidence via **stage-gated injection**. A progressive three-stage training paradigm (SFT → hard-sample self-training → RL with part-aware rewards) ensures genuine evidence reasoning rather than template memorization.
 
-Building on this, we present **VIGIL**, a part-centric structured forensic framework inspired by expert forensic practice through a *plan-then-examine* pipeline: the model first plans which facial parts warrant inspection based on global visual cues, then examines each part with independently sourced forensic evidence. A stage-gated injection mechanism delivers part-level forensic evidence only during examination, ensuring that part selection remains driven by the model's own perception rather than biased by external signals. We further propose a progressive three-stage training paradigm whose reinforcement learning stage employs part-aware rewards to enforce anatomical validity and evidence–conclusion coherence.
+We also introduce **OmniFake**, a hierarchical 5-Level benchmark (200K+ images) for fine-grained generalizability evaluation, where the model is trained on only three foundational generators and progressively tested up to in-the-wild social-media data.
 
-To enable rigorous generalizability evaluation, we construct **OmniFake**, a hierarchical 5-Level benchmark where the model, trained on only three foundational generators, is progressively tested up to in-the-wild social-media data. Extensive experiments demonstrate that VIGIL consistently outperforms both expert detectors and concurrent MLLM-based methods across all generalizability levels.
+### Highlights
 
-## Highlights
+- **Part-Grounded Reasoning** — Every forensic claim is anchored to a specific facial part, decoupling claims from evidence to eliminate hallucination.
+- **Stage-Gated Injection** — Part-level forensic signals (frequency-domain + pixel-level) are delivered only during examination, preserving autonomous planning.
+- **Reasoning Reversion** — Accumulated part-level evidence can overturn an initially incorrect global judgment.
+- **OmniFake Benchmark** — 5-Level hierarchical evaluation from in-domain to in-the-wild social-media data.
 
-- **Part-Grounded Reasoning** — Forensic evidence is anchored to specific facial parts, decoupling claims from observations to eliminate hallucinated explanations.
-- **Plan-then-Examine Pipeline** — The model autonomously selects which regions to inspect, then examines each with independently sourced frequency-domain and pixel-level forensic signals via stage-gated injection.
-- **Reasoning Reversion** — Accumulated part-level evidence can overturn an initially incorrect global judgment, enabling self-correcting forensic analysis.
-- **OmniFake Benchmark** — A hierarchical 5-Level benchmark with 200K+ images for fine-grained generalizability evaluation, from in-domain to in-the-wild social-media data.
-
-## Method Overview
+## Method
 
 <div align="center">
 <img src="assets/framework.png" width="95%">
 </div>
 
-VIGIL adopts a **plan-then-examine** pipeline inspired by expert forensic practice:
-
 | Stage | Description |
 |:---:|---|
-| **Plan** | The model observes global visual cues and autonomously selects which facial parts to inspect — without exposure to any external forensic signal. |
-| **Examine** | A stage-gated mechanism injects frequency-domain and pixel-level features as part-level evidence embeddings, providing each selected region with independently sourced forensic support. |
-| **Synthesize** | Part-level findings are synthesized into a final verdict. Accumulated evidence can overturn an initially incorrect judgment (*reasoning reversion*). |
+| **Plan** | Observe global visual cues and select which facial parts to inspect — without exposure to external forensic signals. |
+| **Examine** | Inject frequency-domain and pixel-level evidence into each selected part via stage-gated mechanism. |
+| **Synthesize** | Aggregate part-level findings into a final verdict, with the ability to overturn initial judgments. |
 
-The progressive three-stage training paradigm consists of: (1) supervised fine-tuning, (2) hard-sample self-training via rejection sampling, and (3) reinforcement learning with part-aware & evidence-conclusion consistency rewards.
+**Training**: (1) SFT on signal-semantic annotations, (2) hard-sample self-training via rejection sampling, (3) RL with part-aware & evidence-conclusion consistency rewards (GRPO).
 
 ## OmniFake Benchmark
 
-OmniFake is a hierarchical 5-Level benchmark containing over **200K images** designed for fine-grained generalizability evaluation. The model is trained on only three foundational generators and progressively tested across increasingly challenging levels.
-
 | Level | Name | Description |
 |:---:|:---:|---|
-| L1 | In-Domain | Same generators as training |
-| L2 | Cross-Generator | Different architectures, same paradigm |
-| L3 | Cross-Paradigm | Unseen generation paradigms |
-| L4 | Cross-Task | Localized manipulation & editing |
-| L5 | In-the-Wild | Social media, unknown methods |
+| L1 | In-Distribution | Same generators as training |
+| L2 | Cross-Architecture | Unseen models within related paradigm families |
+| L3 | Cross-Model | Entirely unseen generation principles (flow matching, autoregressive, commercial generators, etc.) |
+| L4 | Cross-Task | Localized manipulation (inpainting, face restoration) |
+| L5 | In-the-Wild | Social media, unknown methods & real-world degradations |
 
 <div align="center">
 <img src="assets/omnifake.png" width="95%">
@@ -55,7 +49,7 @@ OmniFake is a hierarchical 5-Level benchmark containing over **200K images** des
 
 ## Main Results
 
-VIGIL consistently outperforms both expert detectors and concurrent MLLM-based methods across all OmniFake levels (Accuracy %):
+Accuracy (%) on OmniFake. **Bold** = best, underline = second best.
 
 | Method | L1 | L2 | L3 | L4 | L5 | Avg. |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
