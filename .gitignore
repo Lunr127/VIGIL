@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Checkpoints & logs
+*.pth
+*.ckpt
+*.pt
+logs/
+outputs/
+wandb/
+
+# Data (large files)
+data/
+*.tar.gz
+*.zip
