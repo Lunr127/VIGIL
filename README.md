@@ -2,7 +2,7 @@
 
 # VIGIL: Part-Grounded Structured Reasoning for Generalizable Deepfake Detection
 
-[Paper](https://arxiv.org/abs/2603.21526) &nbsp;|&nbsp; [Project Page](https://vigil.best/) &nbsp;|&nbsp; [OmniFake Dataset]() &nbsp;|&nbsp; [Model Weights]()
+📄 [Paper](https://arxiv.org/abs/2603.21526) &nbsp;|&nbsp; 🌐 [Project Page](https://vigil.best/) &nbsp;|&nbsp; 💾 [OmniFake Dataset]() &nbsp;|&nbsp; 🤗 [Model Weights]()
 
 </div>
 
@@ -78,9 +78,10 @@ Accuracy (%) on OmniFake. **Bold** = best, underline = second best.
 If you find our work useful, please consider citing:
 
 ```bibtex
-@article{vigil2026,
+@article{li2026vigil,
   title={VIGIL: Part-Grounded Structured Reasoning for Generalizable Deepfake Detection},
   author={Li, Xinghan and Xu, Junhao and Chen, Jingjing},
+  journal={arXiv preprint arXiv:2603.21526},
   year={2026}
 }
 ```
