@@ -49,18 +49,95 @@ We also introduce **OmniFake**, a hierarchical 5-Level benchmark (200K+ images) 
 
 ## Main Results
 
-Accuracy (%) on OmniFake. **Bold** = best, underline = second best.
+Accuracy (%) on OmniFake. **Bold** = best, <ins>underline</ins> = second best.
 
-| Method | L1 | L2 | L3 | L4 | L5 | Avg. |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|
-| AIDE (ICLR'25) | 72.3 | 89.1 | 81.6 | 67.6 | 75.0 | 78.9 |
-| Co-SPY (CVPR'25) | 83.5 | 89.9 | 89.0 | 71.3 | 82.5 | 84.7 |
-| DDA (NeurIPS'25) | 97.8 | 94.6 | 91.9 | 81.0 | 80.7 | 88.8 |
-| GPT-5.2 | 65.8 | 82.7 | 73.6 | 58.8 | 69.0 | 71.4 |
-| Gemini-3-Pro | 72.3 | 85.9 | 78.5 | 61.0 | 69.9 | 75.0 |
-| FakeVLM (NeurIPS'25) | 83.5 | 81.0 | 76.8 | 74.5 | 74.9 | 77.1 |
-| Veritas (ICLR'26) | 96.8 | 94.9 | 89.9 | 79.0 | 81.1 | 87.6 |
-| **VIGIL (Ours)** | **98.6** | **96.7** | **95.5** | **89.5** | **86.0** | **93.1** |
+<table>
+<thead>
+<tr>
+  <th align="left" width="220">Method</th>
+  <th align="center" width="90">L1</th>
+  <th align="center" width="90">L2</th>
+  <th align="center" width="90">L3</th>
+  <th align="center" width="90">L4</th>
+  <th align="center" width="90">L5</th>
+  <th align="center" width="90">Avg.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>AIDE <sub>ICLR'25</sub></td>
+  <td align="center">72.3</td>
+  <td align="center">89.1</td>
+  <td align="center">81.6</td>
+  <td align="center">67.6</td>
+  <td align="center">75.0</td>
+  <td align="center">78.9</td>
+</tr>
+<tr>
+  <td>Co-SPY <sub>CVPR'25</sub></td>
+  <td align="center">83.5</td>
+  <td align="center">89.9</td>
+  <td align="center">89.0</td>
+  <td align="center">71.3</td>
+  <td align="center"><ins>82.5</ins></td>
+  <td align="center">84.7</td>
+</tr>
+<tr>
+  <td>DDA <sub>NeurIPS'25</sub></td>
+  <td align="center"><ins>97.8</ins></td>
+  <td align="center"><ins>94.6</ins></td>
+  <td align="center"><ins>91.9</ins></td>
+  <td align="center"><ins>81.0</ins></td>
+  <td align="center">80.7</td>
+  <td align="center"><ins>88.8</ins></td>
+</tr>
+<tr>
+  <td>GPT-5.2</td>
+  <td align="center">65.8</td>
+  <td align="center">82.7</td>
+  <td align="center">73.6</td>
+  <td align="center">58.8</td>
+  <td align="center">69.0</td>
+  <td align="center">71.4</td>
+</tr>
+<tr>
+  <td>Gemini-3-Pro</td>
+  <td align="center">72.3</td>
+  <td align="center">85.9</td>
+  <td align="center">78.5</td>
+  <td align="center">61.0</td>
+  <td align="center">69.9</td>
+  <td align="center">75.0</td>
+</tr>
+<tr>
+  <td>FakeVLM <sub>NeurIPS'25</sub></td>
+  <td align="center">83.5</td>
+  <td align="center">81.0</td>
+  <td align="center">76.8</td>
+  <td align="center">74.5</td>
+  <td align="center">74.9</td>
+  <td align="center">77.1</td>
+</tr>
+<tr>
+  <td>Veritas <sub>ICLR'26</sub></td>
+  <td align="center">96.8</td>
+  <td align="center">94.9</td>
+  <td align="center">89.9</td>
+  <td align="center">79.0</td>
+  <td align="center">81.1</td>
+  <td align="center">87.6</td>
+</tr>
+<tr>
+  <td><b>VIGIL (Ours)</b></td>
+  <td align="center"><b>98.6</b></td>
+  <td align="center"><b>96.7</b></td>
+  <td align="center"><b>95.5</b></td>
+  <td align="center"><b>89.5</b></td>
+  <td align="center"><b>86.0</b></td>
+  <td align="center"><b>93.1</b></td>
+</tr>
+</tbody>
+</table>
 
 ## Code & Data
 
